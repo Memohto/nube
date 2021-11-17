@@ -77,7 +77,7 @@ def stream_handler(message):
     matrix = message["data"]
     if matrix != None:
         result = solve(matrix, matrix)
-        print(f"Result: {result['matrix']}, in {result['time']}")
-        db.child("output").set(result)
+        print(result)
+        # db.child("output").set(result)
         
 my_stream = db.child("input").stream(stream_handler)
