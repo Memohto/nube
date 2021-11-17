@@ -47,8 +47,15 @@ def solve(matrix_a, matrix_b):
 
         end_time = MPI.Wtime()
         total_time = end_time - start_time
+
+        result = []
+        for i in range(len(matrix_c)):
+            result.append([])
+            for j in i:
+                result[i].append(j)
+
         return {
-            'matrix': list(matrix_c).tolist(),
+            'matrix': result,
             'time': total_time
         }
     else:
