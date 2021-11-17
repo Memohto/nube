@@ -34,9 +34,11 @@ if r == 0:
         comm.send({'rows':rows, 'start':start}, dest=dest)
         start += rows
     
+    matrix_c = []
     for source in range(1,workers+1):
         m = comm.recv(source=source)
-        print(f"Message received from {source}: {m}")
+        matrix_c.append(m)
+    print("Final result: {matrix_c}")
 else:
     m = comm.recv()
     start_row = m['start']
