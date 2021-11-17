@@ -21,7 +21,7 @@ if r == 0:
             rows = per_rank + 1
         else:
             rows = per_rank
-        comm.send({rows:rows, start:start}, dest=dest)
+        comm.send({'rows':rows, 'start':start}, dest=dest)
         start += rows
 else:
     m = comm.recv()
