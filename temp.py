@@ -19,7 +19,7 @@ db = firebase.database()
 
 # data to save
 data = [
-    [1, 2, 3, 4],
+    [1, 2, 5, 4],
     [4, 5, 6, 7],
     [5, 3, 2, 8],
     [8, 3, 6, 9]
