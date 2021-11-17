@@ -81,5 +81,6 @@ def stream_handler(message):
         result = solve(matrix, matrix)
         print("Results: "+result)
         # db.child("output").set(result)
-        
-my_stream = db.child("input").stream(stream_handler)
+
+if(MPI.COMM_WORLD.Get_rank() == 0):
+    my_stream = db.child("input").stream(stream_handler)
