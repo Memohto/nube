@@ -1,6 +1,6 @@
 # https://gist.github.com/kmkurn/39ca673bb37946055b38
 
-from mpi4py import MPI
+# from mpi4py import MPI
 import numpy as np
 import pyrebase
 
@@ -68,6 +68,7 @@ def solve(matrix_a, matrix_b):
 
 def stream_handler(message):
     matrix = message["data"]
-    solve(matrix, matrix)
+    if matrix != None:
+        solve(matrix, matrix)
 
 my_stream = db.child("input").stream(stream_handler)
