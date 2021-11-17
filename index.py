@@ -51,7 +51,7 @@ def solve(matrix_a, matrix_b):
         result = []
         for i in range(len(matrix_c)):
             result.append([])
-            for j in i:
+            for j in matrix_c[i]:
                 result[i].append(j)
 
         return {
