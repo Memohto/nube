@@ -38,7 +38,7 @@ if r == 0:
     for source in range(1,workers+1):
         m = comm.recv(source=source)
         matrix_c.append(m)
-    print("Final result: {matrix_c}")
+    print(f"Final result: {matrix_c}")
 else:
     m = comm.recv()
     start_row = m['start']
