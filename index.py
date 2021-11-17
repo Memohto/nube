@@ -11,11 +11,13 @@ comm = MPI.COMM_WORLD
 r = comm.Get_rank()
 s = comm.Get_size()
 
+workers = s - 1
+
 if r == 0:
-    per_rank = len(matrix)//s
-    more = len(matrix)%s
+    per_rank = len(matrix)//workers
+    more = len(matrix)%workers
     start = 0
-    for dest in range(1,s):
+    for dest in range(1,workers+1):
         rows = 0
         if dest <= more:
             rows = per_rank + 1
@@ -26,8 +28,3 @@ if r == 0:
 else:
     m = comm.recv()
     print(f"Message received: Rows {m['rows']}, Start: {m['start']}")
-
-
-
-
-print(f"Desde el rank {r}, size: {s}")
