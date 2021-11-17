@@ -39,6 +39,7 @@ if r == 0:
         print(f"Message received from {source}: {m}")
 else:
     m = comm.recv()
+    start_row = m['start']
     b_cols = len(matrix_b[0])
     a_rows = m['rows']
     a_cols = len(matrix_a[0])
@@ -47,6 +48,6 @@ else:
     for i in range(b_cols):
         for j in range(a_rows):
             for k in range(a_cols):
-                res[j][i] += matrix_a[j][k] * matrix_b[k][i]
+                res[j][i] += matrix_a[start_row + j][k] * matrix_b[k][i]
 
     comm.send(res, dest=0)
