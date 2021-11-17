@@ -54,12 +54,7 @@ def solve(matrix_a, matrix_b):
             for j in matrix_c[i]:
                 result[i].append(j)
         
-        print(result)
-
-        return {
-            'matrix': result,
-            'time': total_time
-        }
+        db.child("output").set({ 'matrix': result, 'time': total_time })
     else:
         m = comm.recv()
         start_row = m['start']
@@ -77,10 +72,7 @@ def solve(matrix_a, matrix_b):
 
 def stream_handler(message):
     matrix = message["data"]
-    print(matrix)
     if matrix != None:
-        print("Entré")
         solve(matrix, matrix)
-        # db.child("output").set(result)
 
 my_stream = db.child("input").stream(stream_handler)
