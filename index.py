@@ -1,6 +1,6 @@
 # https://gist.github.com/kmkurn/39ca673bb37946055b38
 
-# from mpi4py import MPI
+from mpi4py import MPI
 import numpy as np
 import pyrebase
 
@@ -48,7 +48,7 @@ def solve(matrix_a, matrix_b):
         end_time = MPI.Wtime()
         total_time = end_time - start_time
         return {
-            'result': matrix_c,
+            'matrix': matrix_c,
             'time': total_time
         }
     else:
@@ -69,6 +69,9 @@ def solve(matrix_a, matrix_b):
 def stream_handler(message):
     matrix = message["data"]
     if matrix != None:
-        solve(matrix, matrix)
+        result = solve(matrix, matrix)
+        print(f"Result: {result['matrix']}, in {result['time']}")
+        db.child("output").set(result)
+        
 
 my_stream = db.child("input").stream(stream_handler)
