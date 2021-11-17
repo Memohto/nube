@@ -19,10 +19,9 @@ db = firebase.database()
 
 # data to save
 data = [
-    [1, 2, 5, 4],
-    [4, 5, 6, 7],
-    [5, 3, 2, 8],
-    [8, 3, 6, 9]
+    [1, 2, 9],
+    [4, 5, 6],
+    [3, 7, 2]
 ]
 # Pass the user's idToken to the set method
 results = db.child("input").set(data, user['idToken'])
@@ -37,3 +36,8 @@ results = db.child("input").set(data, user['idToken'])
 # my_stream = db.child("users").stream(stream_handler)
 
 # my_stream.close()
+
+
+# from datetime import datetime
+# import math
+# print(math.trunc(datetime.utcnow().timestamp()))
