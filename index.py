@@ -48,7 +48,7 @@ def solve(matrix_a, matrix_b):
         end_time = MPI.Wtime()
         total_time = end_time - start_time
         return {
-            'matrix': matrix_c,
+            'matrix': matrix_c.tolist(),
             'time': total_time
         }
     else:
@@ -73,5 +73,4 @@ def stream_handler(message):
         print(f"Result: {result['matrix']}, in {result['time']}")
         db.child("output").set(result)
         
-
 my_stream = db.child("input").stream(stream_handler)
