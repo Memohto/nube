@@ -82,5 +82,4 @@ def stream_handler(message):
         print("Results: "+result)
         # db.child("output").set(result)
 
-if(MPI.COMM_WORLD.Get_rank() == 0):
-    my_stream = db.child("input").stream(stream_handler)
+my_stream = db.child("input").stream(stream_handler)
