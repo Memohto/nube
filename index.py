@@ -22,6 +22,8 @@ s = comm.Get_size()
 workers = s - 1
 
 if r == 0:
+    start_time = MPI.Wtime()
+
     per_rank = len(matrix_a)//workers
     more = len(matrix_a)%workers
     start = 0
@@ -39,7 +41,12 @@ if r == 0:
         m = comm.recv(source=source)
         for r in m:
             matrix_c.append(r)
+
+    end_time = MPI.Wtime()
+    total_time = end_time - start_time
     print(f"Final result: {matrix_c}")
+    print(f"Final result: {matrix_c[0]}")
+    print(f"Took: {total_time}")
 else:
     m = comm.recv()
     start_row = m['start']
